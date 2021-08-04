@@ -44,69 +44,33 @@ static NSString *coloring = @"#f3af22";
 -(void)setupconstraint{
     
     NSLayoutConstraint *cnX = [self.colorTableView.centerXAnchor constraintEqualToAnchor:self.view.centerXAnchor constant:0.0];
-    NSLayoutConstraint *cnY = [self.colorTableView.centerYAnchor constraintEqualToAnchor:self.view.centerYAnchor constant:0.0];
     NSLayoutConstraint *top = [self.colorTableView.topAnchor constraintEqualToAnchor:self.view.topAnchor constant:123.0];
+    NSLayoutConstraint *lead = [self.colorTableView.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor constant:20.0];
     NSLayoutConstraint *hgt = [self.colorTableView.heightAnchor constraintEqualToConstant: 572.0];
-    NSLayoutConstraint *wdt = [self.colorTableView.widthAnchor constraintEqualToConstant: (self.view.frame.size.width - 40)];
-    NSLayoutConstraint *wdtW = [self.colorTableView.widthAnchor constraintEqualToConstant: (self.view.frame.size.width - 100)];
-    NSLayoutConstraint *topWide1 = [self.colorTableView.topAnchor constraintEqualToAnchor:self.view.topAnchor constant:20];
+    NSLayoutConstraint *wdtW = [self.colorTableView.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor constant:50];
+    NSLayoutConstraint *bottom = [self.colorTableView.bottomAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.bottomAnchor constant:5];
+    NSLayoutConstraint *topWide1 = [self.colorTableView.topAnchor constraintEqualToAnchor:self.view.topAnchor constant:5];
     
-    self.commonConstraints = @[cnX, cnY, hgt];
+    self.commonConstraints = @[cnX, lead, top, hgt];
+    self.wideConstraints = @[cnX, wdtW, topWide1, bottom];
     
-    self.narrowConstraints = @[top, wdt];
-    
-    self.wideConstraints = @[topWide1, wdtW];
-    
-    [NSLayoutConstraint activateConstraints: self.commonConstraints];
-    [NSLayoutConstraint activateConstraints: self.narrowConstraints];
-    //[NSLayoutConstraint activateConstraints: self.narrowConstraints];
-//    if (self.view.frame.size.width > self.view.frame.size.height) {
-//        [NSLayoutConstraint activateConstraints: self.wideConstraints];
-//    } else {
-//        [NSLayoutConstraint activateConstraints: self.narrowConstraints];
-//    }
-    
+    if (self.view.frame.size.width > self.view.frame.size.height) {
+        [NSLayoutConstraint activateConstraints: self.wideConstraints];
+    } else {
+        [NSLayoutConstraint activateConstraints: self.commonConstraints];
+    }
+}
+- (void)willTransitionToTraitCollection:(UITraitCollection *)newCollection withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator{
+    if(newCollection.horizontalSizeClass == UIUserInterfaceSizeClassRegular){
+        [NSLayoutConstraint deactivateConstraints: self.commonConstraints];
+        [NSLayoutConstraint activateConstraints: self.wideConstraints];
+    }
+    else{
+        [NSLayoutConstraint deactivateConstraints: self.wideConstraints];
+        [NSLayoutConstraint activateConstraints: self.commonConstraints];
+    }
 }
 
-//- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator{
-//    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
-//
-//    [coordinator animateAlongsideTransition: ^(id<UIViewControllerTransitionCoordinatorContext> context)
-//     {
-//
-//        NSLayoutConstraint *heightWide = [self.colorTableView.heightAnchor constraintEqualToConstant: self.view.frame.size.height];
-//        heightWide.priority = UILayoutPriorityRequired;
-//        //NSLayoutConstraint *bottomWide = [self.colorTableView.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor constant:0];
-//        //bottomWide.priority = UILayoutPriorityDefaultLow;
-////        NSLayoutConstraint *topWide = [self.colorTableView.topAnchor constraintEqualToAnchor:self.view.topAnchor constant:30];
-////        topWide.priority = UILayoutPriorityRequired;
-////        NSLayoutConstraint *topNarr = [self.colorTableView.topAnchor constraintEqualToAnchor:self.view.topAnchor constant:123];
-////        NSLayoutConstraint *widthNarr = [self.colorTableView.widthAnchor constraintEqualToConstant: (self.view.frame.size.width - 40)];
-////        NSLayoutConstraint *hgtNarr = [self.colorTableView.heightAnchor constraintEqualToConstant: 572.0];
-//
-//       // hgtNarr.priority = UILayoutPriorityRequired;
-//        //topNarr.priority = UILayoutPriorityRequired;
-//        //bottomNarr.priority = UILayoutPriorityRequired;
-//
-//        if (self.view.frame.size.width > self.view.frame.size.height) {
-//            //[NSLayoutConstraint deactivateConstraints: @[topNarr, widthNarr, hgtNarr]];
-//            [NSLayoutConstraint activateConstraints: @[heightWide]];
-//            //[NSLayoutConstraint activateConstraints: @[bottomWide]];
-//            //[NSLayoutConstraint activateConstraints: @[topWide]];
-//            //[self.colorTableView setNeedsUpdateConstraints];
-//        } else if (self.view.frame.size.width < self.view.frame.size.height){
-//
-//            [NSLayoutConstraint deactivateConstraints: @[heightWide]];
-//            //[NSLayoutConstraint deactivateConstraints: @[bottomWide]];
-//            //[NSLayoutConstraint deactivateConstraints: @[topWide]];
-//
-//            [NSLayoutConstraint activateConstraints: @[[self.colorTableView.heightAnchor constraintEqualToConstant: 572.0]]];
-//            [self.colorTableView setNeedsUpdateConstraints];
-//        }
-//    } completion:^(id<UIViewControllerTransitionCoordinatorContext> context){}];
-//
-//
-//}
 /*
  #pragma mark - Navigation
  
@@ -130,12 +94,6 @@ static NSString *coloring = @"#f3af22";
     }
     return cell;
 }
-
-//- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//        CGAffineTransform transform = CGAffineTransformMakeRotation(M_PI_2);
-//        cell.transform = transform;
-//}
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return colorCellsArray.count;

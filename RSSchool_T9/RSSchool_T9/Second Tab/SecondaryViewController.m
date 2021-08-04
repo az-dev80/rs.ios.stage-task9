@@ -41,7 +41,7 @@ static CGFloat xw;
 }
 
 - (void)viewWillAppear:(BOOL)animated{
-    [self.myTableView reloadData];
+    //[self.myTableView reloadData];
 }
 -(void)setupconstraint{
     
@@ -66,34 +66,9 @@ static CGFloat xw;
     } else {
         [NSLayoutConstraint activateConstraints: self.narrowConstraints];
     }
-    
-    //        collectionView2.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-    //        collectionView2.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-    //        collectionView2.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
-    //        collectionView2.heightAnchor.constraint(equalTo: view.heightAnchor).isActive = true
 }
 
-//- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator{
-//    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
-//    
-//    [coordinator animateAlongsideTransition: ^(id<UIViewControllerTransitionCoordinatorContext> context)
-//     {
-//        NSLayoutConstraint *widthWide = [self.myTableView.widthAnchor constraintEqualToConstant: (self.view.frame.size.width - 100)];
-//        widthWide.priority = UILayoutPriorityRequired;
-//        NSLayoutConstraint *leading = [self.myTableView.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor constant:20.0];
-//        leading.priority = UILayoutPriorityDefaultHigh;
-//        
-//        if (self.view.frame.size.width > self.view.frame.size.height) {
-//            [NSLayoutConstraint activateConstraints: @[widthWide]];
-//        } else if (self.view.frame.size.width < self.view.frame.size.height){
-//            [NSLayoutConstraint deactivateConstraints: @[widthWide]];
-//            [NSLayoutConstraint activateConstraints: @[[self.myTableView.widthAnchor constraintEqualToConstant: (self.view.frame.size.width - 40)]]];
-//            [self.myTableView setNeedsUpdateConstraints];
-//        }
-//    } completion:^(id<UIViewControllerTransitionCoordinatorContext> context){}];
-//    
-//    
-//}
+
 /*
 #pragma mark - Navigation
 
@@ -109,7 +84,7 @@ static CGFloat xw;
     [cell initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell0"];
     
     cell.textLabel.text = titleCellsArray[indexPath.row];
-    
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     if (indexPath.row == 0) {
         
         UISwitch *btn = [[UISwitch alloc]initWithFrame:CGRectZero];

@@ -257,4 +257,16 @@ extension ModalViewControllerStory: UICollectionViewDataSource, UICollectionView
         return sectionInsets
     }
     
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if let cell = cell as? ModalCollectionViewCellStory {
+            cell.redraw()
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if let cell = cell as? ModalCollectionViewCellStory {
+            cell.clean()
+        }
+    }
+    
 }

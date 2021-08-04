@@ -23,19 +23,22 @@ import UIKit
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.bounds = CGRect(x: -51, y: 0, width: 73, height: 61)
-        img.frame = contentView.bounds
-        self.layer.addSublayer(img)
         
-        let colorInstance: ColorViewController = ColorViewController()
-        colorInstance.colorForDrawing()
-        img.strokeColor = UIColor(named: colorInstance.colorName)?.cgColor
-        
-        let instance: SecondaryViewController = SecondaryViewController()
-        instance.valueForPass()
-        img.strokeEnd = instance.timerValueObj
-        
-        timer1 = Timer.scheduledTimer(timeInterval: 0.015, target: self, selector: #selector(timerListener), userInfo: nil, repeats: true)
+        //img.frame = contentView.bounds
+        self.redraw()
+//        self.bounds = CGRect(x: -51, y: 0, width: 73, height: 61)
+//        img.frame = contentView.bounds
+//        self.layer.addSublayer(img)
+//
+//        let colorInstance: ColorViewController = ColorViewController()
+//        colorInstance.colorForDrawing()
+//        img.strokeColor = UIColor(named: colorInstance.colorName)?.cgColor
+//
+//        let instance: SecondaryViewController = SecondaryViewController()
+//        instance.valueForPass()
+//        img.strokeEnd = instance.timerValueObj
+//
+//        timer1 = Timer.scheduledTimer(timeInterval: 0.015, target: self, selector: #selector(timerListener), userInfo: nil, repeats: true)
         //RunLoop.main.add(timer1, forMode: RunLoop.Mode.common)
         
     }
@@ -58,12 +61,26 @@ import UIKit
         }
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        img.frame = contentView.bounds
+    func redraw() {
         
+        self.bounds = CGRect(x: 0, y: 0, width: 75, height: 75)
+        img.frame = self.bounds
+        self.layer.addSublayer(img)
+        let colorInstance: ColorViewController = ColorViewController()
+        colorInstance.colorForDrawing()
+        img.strokeColor = UIColor(named: colorInstance.colorName)?.cgColor
+        
+        let instance: SecondaryViewController = SecondaryViewController()
+        instance.valueForPass()
+        img.strokeEnd = instance.timerValueObj
+        
+        timer1 = Timer.scheduledTimer(timeInterval: 0.015, target: self, selector: #selector(timerListener), userInfo: nil, repeats: true)
+        RunLoop.main.add(timer1, forMode: RunLoop.Mode.common)
     }
     
+    func clean() {
+        img.removeFromSuperlayer()
+    }
 //    override func prepareForReuse() {
 //        super.prepareForReuse()
 //        contentView.removeFromSuperview()
