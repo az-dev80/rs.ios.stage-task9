@@ -75,8 +75,8 @@
 		E062472326B4220800F0D448 /* ModalCollectionViewCellStory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalCollectionViewCellStory.swift; sourceTree = "<group>"; };
 		E062472926B5502600F0D448 /* ImageViewWithGradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewWithGradient.swift; sourceTree = "<group>"; };
 		E062472B26B5799200F0D448 /* ImageViewGradientForMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewGradientForMain.swift; sourceTree = "<group>"; };
-		E062472D26B7C08A00F0D448 /* HeaderCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderCollectionView.swift; sourceTree = "<group>"; };
-		E062472F26B8523C00F0D448 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DetailViewController.swift; path = ../../../../../Downloads/DetailViewController.swift; sourceTree = "<group>"; };
+		E062472D26B7C08A00F0D448 /* HeaderCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HeaderCollectionView.swift; path = "/Users/albertzhloba/Documents/rs.ios.stage-task9-Update/RSSchool_T9/RSSchool_T9/Gallery module/HeaderCollectionView.swift"; sourceTree = "<absolute>"; };
+		E062472F26B8523C00F0D448 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DetailViewController.swift; path = "RSSchool_T9/Gallery module/DetailViewController.swift"; sourceTree = SOURCE_ROOT; };
 		E062473126B9055200F0D448 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		E062473326B974BA00F0D448 /* ColorViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ColorViewController.h; sourceTree = "<group>"; };
 		E062473426B974BA00F0D448 /* ColorViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ColorViewController.m; sourceTree = "<group>"; };
